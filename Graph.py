@@ -45,67 +45,75 @@ class Graph(object):
 
         return self.find_route_distance_among(vertices[1:], distance + initial_distance)
 
-    def get_all_possible_paths_given_compare_function(self, source, destination, path, max_stops, compare_function):
+    def get_all_possible_paths_given_compare_function(self, source, destination, path, max_stops, compare_function,
+                                                      cumulative_result):
 
         path.append(source)
 
         # If current vertex is same as destination, then print
         # current path[]
         if source == destination and compare_function(len(path), max_stops):
-            print path
+            # print path
+            cumulative_result += 1
 
         if len(path) > (max_stops + 1):
-            return
+            return cumulative_result
 
         # If current vertex is not destination
         # Recur for all the vertices adjacent to this vertex
         for adjacentVertice in self.vertices[source]:
-            self.get_all_possible_paths_given_compare_function(adjacentVertice, destination, path, max_stops,
-                                                               compare_function)
+            cumulative_result = self.get_all_possible_paths_given_compare_function(
+                adjacentVertice, destination, path, max_stops, compare_function, cumulative_result)
             # Remove current vertex from path[] and mark it as unvisited
             path.pop()
 
-    def get_all_possible_paths_within_distance(self, source, destination, path, max_distance, currentDistance):
+        return cumulative_result
+
+    def get_all_possible_paths_within_distance(self, source, destination, path, max_distance, current_distance,
+                                               cumulative_result):
 
         path.append(source)
 
         # If current vertex is same as destination, then print
-        # current path[]
-        if source == destination and currentDistance < max_distance and len(path) > 1:
-            print "\n\ncurrent-distance: ", str(currentDistance)
-            print path
+        if source == destination and current_distance < max_distance and len(path) > 1:
+            # print "\n\ncurrent-distance: ", str(currentDistance)
+            # print path
+            cumulative_result += 1
 
-        if currentDistance >= max_distance:
-            return
+        if current_distance >= max_distance:
+            return cumulative_result
 
         # If current vertex is not destination
         # Recur for all the vertices adjacent to this vertex
         for adjacentVertice in self.vertices[source]:
-            self.get_all_possible_paths_within_distance(adjacentVertice, destination, path, max_distance,
-                                                        currentDistance + self.vertices[source][adjacentVertice])
+            cumulative_result = self.get_all_possible_paths_within_distance(
+                adjacentVertice, destination, path, max_distance,
+                current_distance + self.vertices[source][adjacentVertice], cumulative_result)
 
             # remove node and distance
             path.pop()
 
-            # currentDistance -= self.vertices[source][adjacentVertice]
+        return cumulative_result
 
     def number_of_trips_starting_at_ending_at_max_stops(self, starting_at, ending_at, max_stops):
 
         def compare_function(path_len, max_number_of_stops):
             return 1 < path_len <= (max_number_of_stops + 1)
 
-        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], max_stops, compare_function)
+        return self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], max_stops,
+                                                                  compare_function, 0)
 
     def number_of_trips_starting_at_ending_at_exactly_stops(self, starting_at, ending_at, exactly_stops):
 
         def compare_function(path_len, number_of_exactly_stops):
             return 1 < path_len == number_of_exactly_stops + 1
 
-        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], exactly_stops, compare_function)
+        return self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], exactly_stops,
+                                                                  compare_function, 0)
 
     def number_of_trips_starting_at_ending_at_distance_less_than(self, starting_at, ending_at, distance):
 
-        self.get_all_possible_paths_within_distance(starting_at, ending_at, [], distance, 0)
+        return self.get_all_possible_paths_within_distance(starting_at, ending_at, [], distance, 0, 0)
 
     # Dijkstra
     def shortest_distance(self, source, destination):
@@ -127,8 +135,6 @@ class Graph(object):
             index_vertice_helper[index] = vertice
 
         if source == destination:
-            print "source is equal to destination"
-
             # fill all distance between source and its adjacent vertices
             for v in self.vertices[source]:
                 distance[vertice_index_helper[v]] = self.vertices[source][v]
