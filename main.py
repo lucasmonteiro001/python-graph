@@ -17,3 +17,9 @@ for e in edges:
 
 
 print graph.vertices["A"]
+
+print graph.find_route_distance_among(["A", "B", "C"])
+print graph.find_route_distance_among(["A", "D"])
+print graph.find_route_distance_among(["A", "D", "C"])
+print graph.find_route_distance_among(["A", "E", "B", "C", "D"])
+print graph.find_route_distance_among(["A", "E", "D"])
