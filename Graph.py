@@ -62,9 +62,32 @@ class Graph(object):
         for adjacentVertice in self.vertices[source]:
             self.get_all_possible_paths_given_compare_function(adjacentVertice, destination, path, max_stops,
                                                                compare_function)
-
             # Remove current vertex from path[] and mark it as unvisited
             path.pop()
+
+    def get_all_possible_paths_within_distance(self, source, destination, path, max_distance, currentDistance):
+
+        path.append(source)
+
+        # If current vertex is same as destination, then print
+        # current path[]
+        if source == destination and currentDistance < max_distance and len(path) > 1:
+            print "\n\ncurrent-distance: ", str(currentDistance)
+            print path
+
+        if currentDistance >= max_distance:
+            return
+
+        # If current vertex is not destination
+        # Recur for all the vertices adjacent to this vertex
+        for adjacentVertice in self.vertices[source]:
+            self.get_all_possible_paths_within_distance(adjacentVertice, destination, path, max_distance,
+                                                        currentDistance + self.vertices[source][adjacentVertice])
+
+            # remove node and distance
+            path.pop()
+
+            # currentDistance -= self.vertices[source][adjacentVertice]
 
     def number_of_trips_starting_at_ending_at_max_stops(self, starting_at, ending_at, max_stops):
 
@@ -82,10 +105,7 @@ class Graph(object):
 
     def number_of_trips_starting_at_ending_at_distance_less_than(self, starting_at, ending_at, distance):
 
-        def compare_function(path, unused):
-            return 1 < len(path) < 30
-
-        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], 0, compare_function)
+        self.get_all_possible_paths_within_distance(starting_at, ending_at, [], distance, 0)
 
     # Dijkstra
     def shortest_distance(self, source, destination):

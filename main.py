@@ -17,9 +17,9 @@ for e in edges:
 
 
 # 10
-# print graph.number_of_trips_starting_at_ending_at_distance_less_than("A", "C", 10)
+print graph.number_of_trips_starting_at_ending_at_distance_less_than("C", "C", 30)
 
-# exit()
+exit()
 
 # 1
 print graph.find_route_distance_among(["A", "B", "C"])
