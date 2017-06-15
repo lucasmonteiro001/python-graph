@@ -80,6 +80,13 @@ class Graph(object):
 
         self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], exactly_stops, compare_function)
 
+    def number_of_trips_starting_at_ending_at_distance_less_than(self, starting_at, ending_at, distance):
+
+        def compare_function(path, unused):
+            return 1 < len(path) < 30
+
+        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], 0, compare_function)
+
     # Dijkstra
     def shortest_distance(self, source, destination):
 

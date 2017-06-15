@@ -6,7 +6,7 @@ from Graph import Graph
 
 # print line
 # edges = ParserUtil.parse_line(line)
-edges = ParserUtil.parse_line("AB5, BC4, CD8, DC8, DE6, AD5, CE20, EB3, AE7")
+edges = ParserUtil.parse_line("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7")
 
 # Instantiates a new graph
 graph = Graph()
@@ -16,9 +16,10 @@ for e in edges:
     graph.add_edge(e.origin, e.destination, e.distance)
 
 
-print graph.shortest_distance("B", "B")
+# 10
+# print graph.number_of_trips_starting_at_ending_at_distance_less_than("A", "C", 10)
 
-exit()
+# exit()
 
 # 1
 print graph.find_route_distance_among(["A", "B", "C"])
@@ -40,3 +41,8 @@ graph.number_of_trips_starting_at_ending_at_max_stops("C", "C", 3)
 print ""
 # 7
 graph.number_of_trips_starting_at_ending_at_exactly_stops("A", "C", 4)
+# 8
+print graph.shortest_distance("A", "C")
+# 9
+print graph.shortest_distance("B", "B")
+
