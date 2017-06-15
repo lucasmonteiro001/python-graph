@@ -16,10 +16,18 @@ for e in edges:
     graph.add_edge(e.origin, e.destination, e.distance)
 
 
-print graph.vertices["A"]
+# graph.number_of_trips_starting_at_ending_at_max_stops("C", "C", 3)
+graph.number_of_trips_starting_at_ending_at_exactly_stops("A", "C", 4)
 
+exit()
+
+# 1
 print graph.find_route_distance_among(["A", "B", "C"])
+# 2
 print graph.find_route_distance_among(["A", "D"])
+# 3
 print graph.find_route_distance_among(["A", "D", "C"])
+# 4
 print graph.find_route_distance_among(["A", "E", "B", "C", "D"])
+# 5
 print graph.find_route_distance_among(["A", "E", "D"])
