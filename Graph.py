@@ -1,5 +1,22 @@
 from collections import defaultdict
 
+inf = float('Inf')
+
+
+def find_min_index(array, removed_from_queue):
+    idx = None
+
+    for i, el in enumerate(array):
+        if i not in removed_from_queue:
+            idx = i
+            break
+
+    for array_index in xrange(1, len(array)):
+        if array[array_index] < array[idx] and array_index not in removed_from_queue:
+            idx = array_index
+
+    return idx
+
 
 class Graph(object):
     def __init__(self):
@@ -28,37 +45,7 @@ class Graph(object):
 
         return self.find_route_distance_among(vertices[1:], distance + initial_distance)
 
-    # Function to print a BFS of graph
-    def BFS(self, s):
-
-        # Mark all the vertices as not visited
-        visited = dict()
-
-        for vertice in self.vertices:
-            visited[vertice] = False
-
-        # Create a queue for BFS
-        queue = list()
-
-        # Mark the source node as visited and enqueue it
-        queue.append(s)
-        visited[s] = True
-
-        while queue:
-
-            # Dequeue a vertex from queue and print it
-            s = queue.pop(0)
-            print s,
-
-            # Get all adjacent vertices of the dequeued
-            # vertex s. If a adjacent has not been visited,
-            # then mark it visited and enqueue it
-            for i in self.vertices[s]:
-                if not visited[i]:
-                    queue.append(i)
-                    visited[i] = True
-
-    def printAllPathsUtil(self, source, destination, path, max_stops, compare_function):
+    def get_all_possible_paths_given_compare_function(self, source, destination, path, max_stops, compare_function):
 
         path.append(source)
 
@@ -73,7 +60,8 @@ class Graph(object):
         # If current vertex is not destination
         # Recur for all the vertices adjacent to this vertex
         for adjacentVertice in self.vertices[source]:
-            self.printAllPathsUtil(adjacentVertice, destination, path, max_stops, compare_function)
+            self.get_all_possible_paths_given_compare_function(adjacentVertice, destination, path, max_stops,
+                                                               compare_function)
 
             # Remove current vertex from path[] and mark it as unvisited
             path.pop()
@@ -83,11 +71,52 @@ class Graph(object):
         def compare_function(path_len, max_number_of_stops):
             return 1 < path_len <= (max_number_of_stops + 1)
 
-        self.printAllPathsUtil(starting_at, ending_at, [], max_stops, compare_function)
+        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], max_stops, compare_function)
 
     def number_of_trips_starting_at_ending_at_exactly_stops(self, starting_at, ending_at, exactly_stops):
 
         def compare_function(path_len, number_of_exactly_stops):
             return 1 < path_len == number_of_exactly_stops + 1
 
-        self.printAllPathsUtil(starting_at, ending_at, [], exactly_stops, compare_function)
+        self.get_all_possible_paths_given_compare_function(starting_at, ending_at, [], exactly_stops, compare_function)
+
+    # Dijkstra
+    def shortest_distance(self, source, destination):
+
+        distance = list()
+        queue = list()
+        vertice_index_helper = dict()
+        index_vertice_helper = dict()
+        removed_from_queue = []
+
+        for index, vertice in enumerate(self.vertices):
+            if vertice == source:
+                distance.append(0)
+            else:
+                distance.append(inf)
+
+            queue.append(vertice)
+
+            vertice_index_helper[vertice] = index
+            index_vertice_helper[index] = vertice
+
+        while len(queue) > 0:
+            min_index = find_min_index(distance, removed_from_queue)
+            removed_from_queue.append(min_index)
+            u = index_vertice_helper[min_index]
+
+            index = queue.index(u)
+            del queue[index]
+
+            distance_to_u = distance[vertice_index_helper[u]]
+
+            for v in self.vertices[u]:
+
+                v_index = vertice_index_helper[v]
+
+                distance_to_v = distance[v_index]
+
+                if distance_to_v > distance_to_u + self.vertices[u][v]:
+                    distance[v_index] = distance_to_u + self.vertices[u][v]
+
+        return distance[vertice_index_helper[destination]]

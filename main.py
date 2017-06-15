@@ -16,18 +16,27 @@ for e in edges:
     graph.add_edge(e.origin, e.destination, e.distance)
 
 
-# graph.number_of_trips_starting_at_ending_at_max_stops("C", "C", 3)
-graph.number_of_trips_starting_at_ending_at_exactly_stops("A", "C", 4)
+print graph.shortest_distance("A", "D")
 
 exit()
 
 # 1
 print graph.find_route_distance_among(["A", "B", "C"])
+print ""
 # 2
 print graph.find_route_distance_among(["A", "D"])
+print ""
 # 3
 print graph.find_route_distance_among(["A", "D", "C"])
+print ""
 # 4
 print graph.find_route_distance_among(["A", "E", "B", "C", "D"])
+print ""
 # 5
 print graph.find_route_distance_among(["A", "E", "D"])
+print ""
+# 6
+graph.number_of_trips_starting_at_ending_at_max_stops("C", "C", 3)
+print ""
+# 7
+graph.number_of_trips_starting_at_ending_at_exactly_stops("A", "C", 4)
