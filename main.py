@@ -6,7 +6,7 @@ from Graph import Graph
 
 # print line
 # edges = ParserUtil.parse_line(line)
-edges = ParserUtil.parse_line("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7")
+edges = ParserUtil.parse_line("AB5, BC4, CD8, DC8, DE6, AD5, CE20, EB3, AE7")
 
 # Instantiates a new graph
 graph = Graph()
@@ -16,7 +16,7 @@ for e in edges:
     graph.add_edge(e.origin, e.destination, e.distance)
 
 
-print graph.shortest_distance("A", "D")
+print graph.shortest_distance("B", "B")
 
 exit()
 

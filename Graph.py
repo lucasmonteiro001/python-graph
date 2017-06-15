@@ -90,16 +90,23 @@ class Graph(object):
         removed_from_queue = []
 
         for index, vertice in enumerate(self.vertices):
-            if vertice == source:
+            if vertice == source and source != destination:
                 distance.append(0)
             else:
                 distance.append(inf)
 
             queue.append(vertice)
-
             vertice_index_helper[vertice] = index
             index_vertice_helper[index] = vertice
 
+        if source == destination:
+            print "source is equal to destination"
+
+            # fill all distance between source and its adjacent vertices
+            for v in self.vertices[source]:
+                distance[vertice_index_helper[v]] = self.vertices[source][v]
+
+        # While queue is not empty
         while len(queue) > 0:
             min_index = find_min_index(distance, removed_from_queue)
             removed_from_queue.append(min_index)
