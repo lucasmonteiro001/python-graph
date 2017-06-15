@@ -15,4 +15,5 @@ graph = Graph()
 for e in edges:
     graph.add_edge(e.origin, e.destination, e.distance)
 
-print graph
+
+print graph.vertices["A"]
