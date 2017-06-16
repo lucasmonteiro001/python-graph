@@ -26,11 +26,11 @@ class Graph(object):
         """Add edge to the graph"""
         # Initialize adjacent vertices
         if len(self.vertices[origin]) == 0:
-            self.vertices[origin] = defaultdict(float)
+            self.vertices[origin] = defaultdict(int)
 
         self.vertices[origin][destination] = weight
 
-    def find_route_distance_among(self, vertices, initial_distance=0.0):
+    def find_route_distance_among(self, vertices, initial_distance=0):
 
         if len(vertices) <= 1:
             return initial_distance
