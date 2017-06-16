@@ -23,6 +23,7 @@ class Graph(object):
         self.vertices = defaultdict(list)
 
     def add_edge(self, origin, destination, weight):
+        """Add edge to the graph"""
         # Initialize adjacent vertices
         if len(self.vertices[origin]) == 0:
             self.vertices[origin] = defaultdict(float)
