@@ -2,6 +2,12 @@ class PrintUtil(object):
     number = 0
 
     @staticmethod
-    def print_output_test(arg):
+    def print_output_test(arg, no_print=False):
         PrintUtil.number += 1
-        print "Output #{}: {}".format(PrintUtil.number, str(arg))
+
+        message = "Output #{}: {}".format(PrintUtil.number, str(arg))
+
+        if not no_print:
+            print message
+
+        return message
