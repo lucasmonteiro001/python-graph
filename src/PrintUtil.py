@@ -8,6 +8,6 @@ class PrintUtil(object):
         message = "Output #{}: {}".format(PrintUtil.number, str(arg))
 
         if not no_print:
-            print message
+            print message + "\n"
 
         return message
