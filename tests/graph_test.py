@@ -53,3 +53,18 @@ class GraphTestCase(unittest.TestCase):
 
     def test_5(self):
         self.assertEquals(self.graphTest.find_route_distance_among(["A", "E", "D"]), NO_SUCH_ROUTE)
+
+    def test_6(self):
+        self.assertEquals(self.graphTest.number_of_trips_starting_at_ending_at_max_stops("C", "C", 3), 2)
+
+    def test_7(self):
+        self.assertEquals(self.graphTest.number_of_trips_starting_at_ending_at_exactly_stops("A", "C", 4), 3)
+
+    def test_8(self):
+        self.assertEquals(self.graphTest.shortest_distance("A", "C"), 9)
+
+    def test_9(self):
+        self.assertEquals(self.graphTest.shortest_distance("B", "B"), 9)
+
+    def test_10(self):
+        self.assertEquals(self.graphTest.number_of_trips_starting_at_ending_at_distance_less_than("C", "C", 30), 7)
