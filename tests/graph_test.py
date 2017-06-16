@@ -1,21 +1,55 @@
 import unittest
-from src.Edge import Edge
+from src.Graph import Graph
+
+NO_SUCH_ROUTE = "NO SUCH ROUTE"
 
 
-class ParserTestCase(unittest.TestCase):
+def create_graph_test():
+    graph = Graph()
+
+    graph.add_edge("A", "B", 5)
+    graph.add_edge("B", "C", 4)
+    graph.add_edge("C", "D", 8)
+    graph.add_edge("D", "C", 8)
+    graph.add_edge("D", "E", 6)
+    graph.add_edge("A", "D", 5)
+    graph.add_edge("C", "E", 2)
+    graph.add_edge("E", "B", 3)
+    graph.add_edge("A", "E", 7)
+
+    return graph
+
+
+class GraphTestCase(unittest.TestCase):
+    def setUp(self):
+        self.graph = Graph()
+        self.graphTest = create_graph_test()
+
     def test_constructor(self):
-        origin = "A"
-        destination = "B"
-        distance = 7
+        self.assertIsNotNone(self.graph.vertices)
 
-        edge = Edge(origin, destination, distance)
+    def test_add_edges(self):
+        graph = self.graph
 
-        self.assertTrue(edge.origin == origin and edge.destination == destination and edge.distance == distance)
+        graph.add_edge("a", "b", 1)
+        graph.add_edge("a", "s", 1)
+        graph.add_edge("b", "s", 1)
 
-    def test_invalid_argument(self):
-        origin = "A"
-        destination = "B"
-        distance = "7a"
+        self.assertEquals(len(self.graph.vertices), 2, "Two items were added to the vertices list")
+        self.assertEquals(len(self.graph.vertices["a"]), 2, "Vertice 'a' has only 2 adjacent vertices")
+        self.assertEquals(len(self.graph.vertices["b"]), 1, "Vertice 'b' has only 1 adjacent vertice")
 
-        with self.assertRaises(ValueError):
-            Edge(origin, destination, distance)
+    def test_1(self):
+        self.assertEquals(self.graphTest.find_route_distance_among(["A", "B", "C"]), 9)
+
+    def test_2(self):
+        self.assertEquals(self.graphTest.find_route_distance_among(["A", "D"]), 5)
+
+    def test_3(self):
+        self.assertEquals(self.graphTest.find_route_distance_among(["A", "D", "C"]), 13)
+
+    def test_4(self):
+        self.assertEquals(self.graphTest.find_route_distance_among(["A", "E", "B", "C", "D"]), 22)
+
+    def test_5(self):
+        self.assertEquals(self.graphTest.find_route_distance_among(["A", "E", "D"]), NO_SUCH_ROUTE)
