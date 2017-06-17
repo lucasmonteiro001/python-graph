@@ -5,6 +5,8 @@ from collections import defaultdict
 # Infinit value
 INF = float('Inf')
 
+NO_SUCH_ROUTE = "NO SUCH ROUTE"
+
 
 def find_min_index(array, removed_from_queue):
     """
@@ -69,7 +71,7 @@ class Graph(object):
 
         # Verify if edge exists
         if destination not in self.vertices[origin]:
-            return "NO SUCH ROUTE"
+            return NO_SUCH_ROUTE
 
         # Get direct distance between origin and destination
         distance = self.vertices[origin][destination]
