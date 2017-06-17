@@ -7,7 +7,7 @@ class PrintUtil(object):
     number = 0
 
     @staticmethod
-    def print_output_test(string, no_print=False):
+    def print_string_to_standard_output(string, no_print=False):
         """
         Print a #string to the standard output follwing a format pattern and
         returns the formated string
