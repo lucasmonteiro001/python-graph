@@ -1,5 +1,5 @@
 import unittest
-from src.graph import Graph
+from tests import Graph
 
 NO_SUCH_ROUTE = "NO SUCH ROUTE"
 

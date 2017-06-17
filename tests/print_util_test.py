@@ -1,6 +1,5 @@
 import unittest
-
-from src.util.print_util import PrintUtil
+from tests import PrintUtil
 
 MESSAGE = "DEFAULT MESSAGE TO BE PRINT"
 

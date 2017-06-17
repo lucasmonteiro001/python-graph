@@ -1,5 +1,5 @@
 import unittest
-from src.edge import Edge
+from tests import Edge
 
 
 class ParserTestCase(unittest.TestCase):
