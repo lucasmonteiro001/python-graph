@@ -1,6 +1,6 @@
 """Main module. Runs the tests given in the documentation"""
 
-from src import PrintUtil, InputUtil, ParserUtil
+from src.util import PrintUtil, InputUtil, ParserUtil
 from src.graph import Graph
 
 LINE = InputUtil.read_standard_input()
