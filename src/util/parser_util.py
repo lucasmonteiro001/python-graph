@@ -26,5 +26,11 @@ class ParserUtil(object):
         # Token delimiter
         token = ","
 
-        # remove trailing/leading/repeated spaces before parsing
-        return map(ParserUtil.__parse, " ".join(string.split(token)).split())
+        try:
+            # remove trailing/leading/repeated spaces before parsing
+            return map(ParserUtil.__parse, " ".join(string.split(token)).split())
+        except Exception:
+            raise ValueError("Invalid input."
+                             "\nEach edge should be separeted by comma."
+                             "\nEach edge is composed of: two letters and one positive integer"
+                             "\nExample: AX9, FW12, KB72")
