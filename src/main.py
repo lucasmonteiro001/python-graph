@@ -1,13 +1,12 @@
-from input_util import InputUtil
-from parser_util import ParserUtil
+from src.util.input_util import InputUtil
+from src.util.parser_util import ParserUtil
+
 from graph import Graph
-from print_util import PrintUtil
+from src.util.print_util import PrintUtil
 
 line = InputUtil.read_standard_input()
 
-# print line
 edges = ParserUtil.parse_string(line)
-# edges = ParserUtil.parse_line("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7")
 
 # Instantiates a new graph
 graph = Graph()
