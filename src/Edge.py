@@ -1,6 +1,16 @@
+"""This module represents the edge of a graph"""
+
+
 class Edge(object):
+    """This module represents the edge of a graph"""
+
     def __init__(self, origin, destination, distance):
-        super(Edge, self).__init__()
+        """
+        Constructor
+        :param origin: id of origin vertice
+        :param destination: id of destination vertice
+        :param distance: distance between origin and destination
+        """
         self.origin = origin
         self.destination = destination
         self.distance = int(distance)
