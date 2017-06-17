@@ -55,10 +55,10 @@ class GraphTestCase(unittest.TestCase):
         self.assertEquals(self.graphTest.find_route_distance_among_vertices(["A", "E", "D"]), NO_SUCH_ROUTE)
 
     def test_6(self):
-        self.assertEquals(self.graphTest.get_total_trips_between_origin_destination_max_stops("C", "C", 3), 2)
+        self.assertEquals(self.graphTest.get_total_trips_max_stops("C", "C", 3), 2)
 
     def test_7(self):
-        self.assertEquals(self.graphTest.get_total_trips_between_origin_destination_exactly_stops("A", "C", 4), 3)
+        self.assertEquals(self.graphTest.get_total_trips_exact_stops("A", "C", 4), 3)
 
     def test_8(self):
         self.assertEquals(self.graphTest.get_shortest_distance("A", "C"), 9)
@@ -67,4 +67,4 @@ class GraphTestCase(unittest.TestCase):
         self.assertEquals(self.graphTest.get_shortest_distance("B", "B"), 9)
 
     def test_10(self):
-        self.assertEquals(self.graphTest.get_total_trips_between_origin_destination_distance_less_than("C", "C", 30), 7)
+        self.assertEquals(self.graphTest.get_total_trips_distance_less_than("C", "C", 30), 7)

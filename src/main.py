@@ -36,11 +36,11 @@ PrintUtil.print_string_to_standard_output(
 
 # Test #6
 PrintUtil.print_string_to_standard_output(
-    graph.get_total_trips_between_origin_destination_max_stops("C", "C", 3))
+    graph.get_total_trips_max_stops("C", "C", 3))
 
 # Test #7
 PrintUtil.print_string_to_standard_output(
-    graph.get_total_trips_between_origin_destination_exactly_stops("A", "C", 4))
+    graph.get_total_trips_exact_stops("A", "C", 4))
 
 # Test #8
 PrintUtil.print_string_to_standard_output(
@@ -52,4 +52,4 @@ PrintUtil.print_string_to_standard_output(
 
 # Test #10
 PrintUtil.print_string_to_standard_output(
-    graph.get_total_trips_between_origin_destination_distance_less_than("C", "C", 30))
+    graph.get_total_trips_distance_less_than("C", "C", 30))

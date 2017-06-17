@@ -145,7 +145,7 @@ class Graph(object):
 
         return cumulative_result
 
-    def get_total_trips_between_origin_destination_max_stops(self, origin, destination, max_stops):
+    def get_total_trips_max_stops(self, origin, destination, max_stops):
         """
         Get the total number of trips between #origin vertice and #destination vertice
         that have #max_stops stops at the most
@@ -166,7 +166,7 @@ class Graph(object):
 
         return self.get_all_possible_paths(origin, destination, [], max_stops, compare_function, 0)
 
-    def get_total_trips_between_origin_destination_exactly_stops(self, origin, destination, exactly_stops):
+    def get_total_trips_exact_stops(self, origin, destination, exactly_stops):
         """
         Get the total number of trips between #origin vertice and #destination vertice
         that have exactly #exactly_stops stops
@@ -188,7 +188,7 @@ class Graph(object):
         return self.get_all_possible_paths(origin, destination, [], exactly_stops,
                                            compare_function, 0)
 
-    def get_total_trips_between_origin_destination_distance_less_than(self, origin, destination, distance):
+    def get_total_trips_distance_less_than(self, origin, destination, distance):
         """
         Get the total number of trips between #origin vertice and #destination vertice
         that have less than #distance in distance
