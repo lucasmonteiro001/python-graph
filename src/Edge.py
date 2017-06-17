@@ -1,8 +1,8 @@
-"""This module represents the edge of a graph"""
+"""This module contains the class that represents the edges of the graph"""
 
 
 class Edge(object):
-    """This module represents the edge of a graph"""
+    """This class represents the edge of a graph"""
 
     def __init__(self, origin, destination, distance):
         """
