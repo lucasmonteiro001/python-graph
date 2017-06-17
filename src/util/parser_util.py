@@ -1,6 +1,6 @@
 """Module responsible for parsing utilities"""
 
-from src.edge import Edge
+from src.main.edge import Edge
 
 
 class ParserUtil(object):
