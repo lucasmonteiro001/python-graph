@@ -7,7 +7,10 @@ class InputUtil(object):
 
     @staticmethod
     def read_standard_input():
-        """Method that read line from standard input and return it as string"""
+        """
+        Method that read line from standard input and return it as string
+        :return: returns the read string from the standard input
+        """
 
         try:
             print "Enter with the graph edges separated by comma: " \
