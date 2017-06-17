@@ -7,7 +7,7 @@ A linguagem de programação escolhida foi Python e a versão de teste foi a *2.
 As suposições que serão explicadas a seguir guiaram a implementação do algoritmo.
 
  - A entrada deve ser passada via *standard input* e estar formatada corretamente (como especificado no exemplo da especificação).
-	 - O formato aceito é baseado na *regex* `[a-zA-Z]{2}\d+((,)*( )*[a-zA-Z]{2}\d+)*` . Cada vértice é representado por **uma** letra do alfabeto e a distância é um número inteiro. Exemplo: AB7 significa uma aresta com origem no vértice A e destino no vértice B com peso igual a 7.
+	 - O formato aceito é baseado na *regex* `[a-zA-Z]{2}\d+((,){1}( )*[a-zA-Z]{2}\d+)*` . Cada vértice é representado por **uma** letra do alfabeto e a distância é um número inteiro. Exemplo: AB7 significa uma aresta com origem no vértice A e destino no vértice B com peso igual a 7.
  -  A saída do algoritmo é baseada nos testes passados na especificação. Portanto, se a entrada for exatamente igual à da especificação, o resultado será o mesmo.
 	 - O arquivo  `src/main/main.py` contém os resultados dos testes. Se quiser executar testes para outros conjuntos de arestas, é necessário alterá-lo.
 	 - Cada tipo de problema do teste está diretamente ligado à uma função correspondente que o resolve.
