@@ -52,6 +52,10 @@ class Graph(object):
         if len(self.vertices[origin]) == 0:
             self.vertices[origin] = defaultdict(int)
 
+        # Garantee that destination vertice appears on vertices
+        if len(self.vertices[destination]) == 0:
+            self.vertices[destination] = defaultdict(int)
+
         self.vertices[origin][destination] = weight
 
     def find_route_distance_among_vertices(self, vertices, initial_distance=0):

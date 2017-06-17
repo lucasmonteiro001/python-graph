@@ -5,6 +5,10 @@ NO_SUCH_ROUTE = "NO SUCH ROUTE"
 
 
 def create_graph_test():
+    """
+    Graph from the instruction example
+    :return: graph
+    """
     graph = Graph()
 
     graph.add_edge("A", "B", 5)
@@ -16,6 +20,25 @@ def create_graph_test():
     graph.add_edge("C", "E", 2)
     graph.add_edge("E", "B", 3)
     graph.add_edge("A", "E", 7)
+
+    return graph
+
+
+def create_graph_2():
+    """
+    Create a graph for testing purposes
+    :return: graph
+    """
+    graph = Graph()
+
+    graph.add_edge("a", "b", 4)
+    graph.add_edge("b", "c", 8)
+    graph.add_edge("b", "e", 20)
+    graph.add_edge("c", "d", 8)
+    graph.add_edge("d", "e", 2)
+    graph.add_edge("e", "c", 15)
+    graph.add_edge("e", "f", 3)
+    graph.add_edge("f", "b", 1)
 
     return graph
 
@@ -35,7 +58,7 @@ class GraphTestCase(unittest.TestCase):
         graph.add_edge("a", "s", 1)
         graph.add_edge("b", "s", 1)
 
-        self.assertEquals(len(self.graph.vertices), 2, "Two items were added to the vertices list")
+        self.assertEquals(len(self.graph.vertices), 3, "Three items were added to the vertices list")
         self.assertEquals(len(self.graph.vertices["a"]), 2, "Vertice 'a' has only 2 adjacent vertices")
         self.assertEquals(len(self.graph.vertices["b"]), 1, "Vertice 'b' has only 1 adjacent vertice")
 
@@ -68,3 +91,14 @@ class GraphTestCase(unittest.TestCase):
 
     def test_10(self):
         self.assertEquals(self.graphTest.get_total_trips_distance_less_than("C", "C", 30), 7)
+
+    def test_graph2(self):
+        graph = create_graph_2()
+
+        self.assertEquals(graph.find_route_distance_among_vertices(["a", "b", "c"]), 12)
+        self.assertEquals(graph.find_route_distance_among_vertices(["a", "b", "c", "d", "e", "f"]), 25)
+        self.assertEquals(graph.find_route_distance_among_vertices(["a", "f"]), NO_SUCH_ROUTE)
+        self.assertEquals(graph.find_route_distance_among_vertices(["c", "e"]), NO_SUCH_ROUTE)
+        self.assertEquals(graph.get_shortest_distance("a", "b"), 4)
+        self.assertEquals(graph.get_shortest_distance("a", "f"), 25)
+        self.assertEquals(graph.get_shortest_distance("d", "c"), 14)
