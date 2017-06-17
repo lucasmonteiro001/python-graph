@@ -1,8 +1,6 @@
-from src.util.input_util import InputUtil
-from src.util.parser_util import ParserUtil
+from src import PrintUtil, InputUtil, ParserUtil
 
 from graph import Graph
-from src.util.print_util import PrintUtil
 
 line = InputUtil.read_standard_input()
 
